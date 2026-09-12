@@ -1,6 +1,7 @@
 {
   "extends": "@arylo-scripts/tsconfig/base.json",
   "compilerOptions": {
+    "types": ["node"],
     "rootDir": "./src",
     "outDir": "./dist",
     "declaration": true,
