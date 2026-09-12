@@ -1,5 +1,5 @@
 import { AsyncLocalStorage } from 'async_hooks'
-import { headParams } from '@scripts/function-control'
+import { headParams } from '@arylo-scripts/function-control'
 import lodash from 'lodash'
 
 type CustomConsole = {

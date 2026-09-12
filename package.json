@@ -1,17 +1,20 @@
 {
-  "name": "@scripts/logger",
+  "name": "@arylo-scripts/node-logger",
   "version": "1.0.0",
-  "private": true,
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "description": "Context-aware logging helpers for Node.js build scripts.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./src/index.ts",
-      "require": "./dist/index.js",
       "types": "./dist/index.d.ts",
-      "default": "./src/index.ts"
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "clean": "rimraf dist",
@@ -19,10 +22,26 @@
     "lint:type-check": "tsc -p tsconfig.json --noEmit",
     "lint:formatter": "oxfmt --check",
     "lint:oxlint": "oxlint",
-    "fix:formatter": "oxfmt"
+    "fix:formatter": "oxfmt",
+    "prepare": "npm run build"
+  },
+  "engines": {
+    "node": "24.12.0"
+  },
+  "packageManager": "npm@11.6.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arylo-scripts/node-logger.git"
+  },
+  "homepage": "https://github.com/arylo-scripts/node-logger#readme",
+  "bugs": {
+    "url": "https://github.com/arylo-scripts/node-logger/issues"
   },
   "license": "MIT",
   "devDependencies": {
+    "@arylo-scripts/tsconfig": "github:arylo-scripts/tsconfig#master",
+    "@types/lodash": "^4.17.24",
+    "@types/node": "^24.12.0",
     "concurrently": "^8.2.2",
     "oxfmt": "^0.35.0",
     "oxlint": "^1.58.0",
@@ -30,7 +49,7 @@
     "typescript": "~5.9.3"
   },
   "dependencies": {
-    "@scripts/function-control": "1.0.0",
+    "@arylo-scripts/function-control": "github:arylo-scripts/function-control#master",
     "lodash": "^4.17.23"
   }
 }
