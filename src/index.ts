@@ -29,13 +29,20 @@ function inject<F extends (...args: any[]) => any>(names: string | string[], cb:
   )
 }
 
-export const logger = {
+export const logger = Object.freeze({
   log: (...args: any[]) => (storage.getStore()?.log ?? console.log)(...args),
   debug: (...args: any[]) => (storage.getStore()?.debug ?? console.log)(...args),
   info: (...args: any[]) => (storage.getStore()?.info ?? console.info)(...args),
   warn: (...args: any[]) => (storage.getStore()?.warn ?? console.warn)(...args),
   error: (...args: any[]) => (storage.getStore()?.error ?? console.error)(...args),
   inject,
-}
+} as {
+  log: typeof console.log
+  debug: typeof console.log
+  info: typeof console.info
+  warn: typeof console.warn
+  error: typeof console.error
+  inject: typeof inject
+})
 
 export default logger

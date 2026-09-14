@@ -2,6 +2,13 @@
   "name": "@arylo-scripts/node-logger",
   "version": "1.0.0",
   "description": "Context-aware logging helpers for Node.js build scripts.",
+  "keywords": [
+    "node",
+    "logger",
+    "logging",
+    "async-local-storage",
+    "typescript"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -37,9 +44,14 @@
   "bugs": {
     "url": "https://github.com/arylo-scripts/node-logger/issues"
   },
+  "author": "Arylo Yeung <arylo.open@gmail.com>",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "license": "MIT",
   "devDependencies": {
-    "@arylo-scripts/tsconfig": "github:arylo-scripts/tsconfig#master",
+    "@arylo-scripts/tsconfig": "^1.0.0",
     "@types/lodash": "^4.17.24",
     "@types/node": "^24.12.0",
     "concurrently": "^8.2.2",
@@ -49,7 +61,7 @@
     "typescript": "~5.9.3"
   },
   "dependencies": {
-    "@arylo-scripts/function-control": "github:arylo-scripts/function-control#master",
+    "@arylo-scripts/function-control": "^1.0.0",
     "lodash": "^4.17.23"
   }
 }

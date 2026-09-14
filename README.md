@@ -5,7 +5,7 @@ Context-aware logging helpers for Node.js build scripts.
 ## Install
 
 ```sh
-npm install github:arylo-scripts/node-logger
+npm install @arylo-scripts/node-logger
 ```
 
 ## Usage
@@ -13,10 +13,28 @@ npm install github:arylo-scripts/node-logger
 ```ts
 import logger from '@arylo-scripts/node-logger'
 
-logger.inject('build', () => {
+logger.info('application started')
+
+await logger.inject('build', async () => {
   logger.info('started')
+
+  await logger.inject('assets', () => {
+    logger.warn('asset is missing')
+  })
 })
 ```
+
+`inject` uses `AsyncLocalStorage`, so the same logger can add one or more scopes
+to messages without replacing the global console.
+
+## API
+
+- `logger.log(...args)`
+- `logger.debug(...args)`
+- `logger.info(...args)`
+- `logger.warn(...args)`
+- `logger.error(...args)`
+- `logger.inject(names, callback)`
 
 ## Development
 
