@@ -1,9 +1,9 @@
-import lodash from 'lodash'
 import { storage } from '../storage'
+import { castArray } from '../utils/castArray'
 
 export function updateFlag(names: string | string[]) {
-  const flag = lodash
-    .castArray(names)
+  const flag = castArray(names)
+    .filter(Boolean)
     .map((name) => `[${name}]`)
     .join('')
   storage.enterWith(flag)

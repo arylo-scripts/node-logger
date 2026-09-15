@@ -10,6 +10,6 @@ export function time(label: string, options: TimeOptions = DEFAULT_TIME_OPTIONS)
   const startTime = Date.now()
   loggerFn(label)
   return {
-    end: () => loggerFn(label, `ET ${transformTime(Date.now() - startTime)}`),
+    end: () => loggerFn(label, `- ET ${transformTime(Date.now() - startTime)}`),
   }
 }

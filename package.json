@@ -1,6 +1,6 @@
 {
   "name": "@arylo-scripts/node-logger",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Context-aware logging helpers for Node.js build scripts.",
   "keywords": [
     "node",
@@ -47,12 +47,10 @@
     "test": "vitest run src"
   },
   "dependencies": {
-    "@arylo-scripts/function-control": "^1.0.0",
-    "lodash": "^4.17.23"
+    "@arylo-scripts/function-control": "^1.1.1"
   },
   "devDependencies": {
     "@arylo-scripts/tsconfig": "^1.0.0",
-    "@types/lodash": "^4.17.24",
     "@types/node": "^24.12.0",
     "concurrently": "^8.2.2",
     "oxfmt": "^0.35.0",
@@ -64,7 +62,7 @@
   },
   "packageManager": "npm@11.6.2",
   "engines": {
-    "node": "24.12.0"
+    "node": ">=13.10.0"
   },
   "publishConfig": {
     "access": "public",
