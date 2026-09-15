@@ -1,48 +1,15 @@
-import { AsyncLocalStorage } from 'async_hooks'
-import { headParams } from '@arylo-scripts/function-control'
-import lodash from 'lodash'
-
-type CustomConsole = {
-  log: typeof console.log
-  debug: typeof console.log
-  info: typeof console.info
-  warn: typeof console.warn
-  error: typeof console.error
-}
-
-const storage = new AsyncLocalStorage<CustomConsole>()
-
-function inject<F extends (...args: any[]) => any>(names: string | string[], cb: F) {
-  const flag = lodash
-    .castArray(names)
-    .map((name) => `[${name}]`)
-    .join('')
-  return storage.run(
-    {
-      log: headParams(console.log, flag),
-      debug: headParams(console.log, flag),
-      info: headParams(console.info, flag),
-      warn: headParams(console.warn, flag),
-      error: headParams(console.error, flag),
-    },
-    cb,
-  )
-}
+import { baseLogger } from './base'
+import { group } from './extra/group'
+import { inject } from './extra/inject'
+import { time } from './extra/time'
+import { updateFlag } from './extra/updateFlag'
 
 export const logger = Object.freeze({
-  log: (...args: any[]) => (storage.getStore()?.log ?? console.log)(...args),
-  debug: (...args: any[]) => (storage.getStore()?.debug ?? console.log)(...args),
-  info: (...args: any[]) => (storage.getStore()?.info ?? console.info)(...args),
-  warn: (...args: any[]) => (storage.getStore()?.warn ?? console.warn)(...args),
-  error: (...args: any[]) => (storage.getStore()?.error ?? console.error)(...args),
+  ...baseLogger,
   inject,
-} as {
-  log: typeof console.log
-  debug: typeof console.log
-  info: typeof console.info
-  warn: typeof console.warn
-  error: typeof console.error
-  inject: typeof inject
-})
+  group,
+  time,
+  updateFlag,
+} as const)
 
 export default logger
